@@ -44,12 +44,10 @@ get("/dice/2/10") do
 end
 
 get("/dice/1/20") do
-  die = rand(1..10)
+  @die = rand(1..10)
 	
-  outcome = "You rolled a #{die}."
-	
-  "<h1>1d20</h1>
-   <p>#{outcome}</p>"
+  @outcome = "You rolled a #{@die}."
+	erb(:one_twenty)
 end
 
 get("/dice/5/4") do
@@ -71,4 +69,16 @@ get("/dice/5/4") do
   "<h1>5d4</h1>
    <p>#{outcome}</p><br/>
    <p>#{outcome2}</p>"
+end
+
+get("/dice/100/6") do
+  @rolls = []
+
+  100.times do
+    die = rand(1..6)
+
+    @rolls.push(die)
+  end
+
+  erb(:one_hundred_six)
 end
